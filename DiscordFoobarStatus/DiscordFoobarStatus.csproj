@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0-windows</TargetFramework>	  
+    <UseWindowsForms>true</UseWindowsForms>	  <TargetFramework>net5.0-windows</TargetFramework>
+	  
+    <Nullable>enable</Nullable>
+    <AssemblyName>dotnet_discord_foobar_status</AssemblyName>
+    <ProduceReferenceAssembly>False</ProduceReferenceAssembly>
+    <Platforms>x86</Platforms>
+	<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
+    <Optimize>False</Optimize>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="dotnet_component_interface" Version="0.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="6.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DiscordFoobarStatus.Core\DiscordFoobarStatus.Core.csproj" />
+  </ItemGroup>
+
+</Project>
