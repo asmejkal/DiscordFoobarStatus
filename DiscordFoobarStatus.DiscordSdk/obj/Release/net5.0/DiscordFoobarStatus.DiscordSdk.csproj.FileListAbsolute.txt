@@ -1,0 +1,14 @@
+D:\repos\DiscordFoobarStatus\DiscordFoobarStatus.DiscordSdk\bin\Release\net5.0\DiscordFoobarStatus.DiscordSdk.deps.json
+D:\repos\DiscordFoobarStatus\DiscordFoobarStatus.DiscordSdk\bin\Release\net5.0\DiscordFoobarStatus.DiscordSdk.dll
+D:\repos\DiscordFoobarStatus\DiscordFoobarStatus.DiscordSdk\bin\Release\net5.0\ref\DiscordFoobarStatus.DiscordSdk.dll
+D:\repos\DiscordFoobarStatus\DiscordFoobarStatus.DiscordSdk\bin\Release\net5.0\DiscordFoobarStatus.DiscordSdk.pdb
+D:\repos\DiscordFoobarStatus\DiscordFoobarStatus.DiscordSdk\obj\Release\net5.0\DiscordFoobarStatus.DiscordSdk.csproj.AssemblyReference.cache
+D:\repos\DiscordFoobarStatus\DiscordFoobarStatus.DiscordSdk\obj\Release\net5.0\DiscordFoobarStatus.DiscordSdk.GeneratedMSBuildEditorConfig.editorconfig
+D:\repos\DiscordFoobarStatus\DiscordFoobarStatus.DiscordSdk\obj\Release\net5.0\DiscordFoobarStatus.DiscordSdk.AssemblyInfoInputs.cache
+D:\repos\DiscordFoobarStatus\DiscordFoobarStatus.DiscordSdk\obj\Release\net5.0\DiscordFoobarStatus.DiscordSdk.AssemblyInfo.cs
+D:\repos\DiscordFoobarStatus\DiscordFoobarStatus.DiscordSdk\obj\Release\net5.0\DiscordFoobarStatus.DiscordSdk.csproj.CoreCompileInputs.cache
+D:\repos\DiscordFoobarStatus\DiscordFoobarStatus.DiscordSdk\obj\Release\net5.0\DiscordFoobarStatus.DiscordSdk.dll
+D:\repos\DiscordFoobarStatus\DiscordFoobarStatus.DiscordSdk\obj\Release\net5.0\ref\DiscordFoobarStatus.DiscordSdk.dll
+D:\repos\DiscordFoobarStatus\DiscordFoobarStatus.DiscordSdk\obj\Release\net5.0\DiscordFoobarStatus.DiscordSdk.pdb
+D:\repos\DiscordFoobarStatus\DiscordFoobarStatus.DiscordSdk\bin\Release\net5.0\discord_game_sdk.dll
+D:\repos\DiscordFoobarStatus\DiscordFoobarStatus.DiscordSdk\bin\Release\net5.0\discord_game_sdk.dll.lib

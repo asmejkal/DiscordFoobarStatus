@@ -1,0 +1,157 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\repos\\DiscordFoobarStatus\\DiscordFoobarStatus\\DiscordFoobarStatus.csproj": {}
+  },
+  "projects": {
+    "D:\\repos\\DiscordFoobarStatus\\DiscordFoobarStatus.Core\\DiscordFoobarStatus.Core.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\repos\\DiscordFoobarStatus\\DiscordFoobarStatus.Core\\DiscordFoobarStatus.Core.csproj",
+        "projectName": "DiscordFoobarStatus.Core",
+        "projectPath": "D:\\repos\\DiscordFoobarStatus\\DiscordFoobarStatus.Core\\DiscordFoobarStatus.Core.csproj",
+        "packagesPath": "C:\\Users\\Adam\\.nuget\\packages\\",
+        "outputPath": "D:\\repos\\DiscordFoobarStatus\\DiscordFoobarStatus.Core\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "D:\\repos\\DiscordFoobarStatus\\NuGet.Config",
+          "C:\\Users\\Adam\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "D:\\nuget": {},
+          "https://pkgs.dev.azure.com/Yeba/DiscordFoobarStatus/_packaging/Packages/nuget/v3/index.json": {},
+          "https://pkgs.dev.azure.com/Yeba/DustyBot/_packaging/Dependencies/nuget/v3/index.json": {},
+          "https://www.myget.org/F/disqord/api/v3/index.json": {},
+          "https://www.nuget.org/api/v2/": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.104\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\repos\\DiscordFoobarStatus\\DiscordFoobarStatus\\DiscordFoobarStatus.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\repos\\DiscordFoobarStatus\\DiscordFoobarStatus\\DiscordFoobarStatus.csproj",
+        "projectName": "dotnet_discord_foobar_status",
+        "projectPath": "D:\\repos\\DiscordFoobarStatus\\DiscordFoobarStatus\\DiscordFoobarStatus.csproj",
+        "packagesPath": "C:\\Users\\Adam\\.nuget\\packages\\",
+        "outputPath": "D:\\repos\\DiscordFoobarStatus\\DiscordFoobarStatus\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "D:\\repos\\DiscordFoobarStatus\\NuGet.Config",
+          "C:\\Users\\Adam\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0-windows7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "D:\\nuget": {},
+          "https://pkgs.dev.azure.com/Yeba/DiscordFoobarStatus/_packaging/Packages/nuget/v3/index.json": {},
+          "https://pkgs.dev.azure.com/Yeba/DustyBot/_packaging/Dependencies/nuget/v3/index.json": {},
+          "https://www.myget.org/F/disqord/api/v3/index.json": {},
+          "https://www.nuget.org/api/v2/": {}
+        },
+        "frameworks": {
+          "net5.0-windows7.0": {
+            "targetAlias": "net5.0-windows",
+            "projectReferences": {
+              "D:\\repos\\DiscordFoobarStatus\\DiscordFoobarStatus.Core\\DiscordFoobarStatus.Core.csproj": {
+                "projectPath": "D:\\repos\\DiscordFoobarStatus\\DiscordFoobarStatus.Core\\DiscordFoobarStatus.Core.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0-windows7.0": {
+          "targetAlias": "net5.0-windows",
+          "dependencies": {
+            "Microsoft.Extensions.Hosting": {
+              "target": "Package",
+              "version": "[6.0.1, )"
+            },
+            "Microsoft.Extensions.Http": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.1, )"
+            },
+            "dotnet_component_interface": {
+              "target": "Package",
+              "version": "[0.1.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            },
+            "Microsoft.WindowsDesktop.App.WindowsForms": {
+              "privateAssets": "none"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.104\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

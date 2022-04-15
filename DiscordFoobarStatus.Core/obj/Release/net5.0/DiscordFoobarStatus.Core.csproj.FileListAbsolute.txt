@@ -1,0 +1,11 @@
+D:\repos\DiscordFoobarStatus\DiscordFoobarStatus.Core\bin\Release\net5.0\DiscordFoobarStatus.Core.deps.json
+D:\repos\DiscordFoobarStatus\DiscordFoobarStatus.Core\bin\Release\net5.0\DiscordFoobarStatus.Core.dll
+D:\repos\DiscordFoobarStatus\DiscordFoobarStatus.Core\bin\Release\net5.0\ref\DiscordFoobarStatus.Core.dll
+D:\repos\DiscordFoobarStatus\DiscordFoobarStatus.Core\bin\Release\net5.0\DiscordFoobarStatus.Core.pdb
+D:\repos\DiscordFoobarStatus\DiscordFoobarStatus.Core\obj\Release\net5.0\DiscordFoobarStatus.Core.GeneratedMSBuildEditorConfig.editorconfig
+D:\repos\DiscordFoobarStatus\DiscordFoobarStatus.Core\obj\Release\net5.0\DiscordFoobarStatus.Core.AssemblyInfoInputs.cache
+D:\repos\DiscordFoobarStatus\DiscordFoobarStatus.Core\obj\Release\net5.0\DiscordFoobarStatus.Core.AssemblyInfo.cs
+D:\repos\DiscordFoobarStatus\DiscordFoobarStatus.Core\obj\Release\net5.0\DiscordFoobarStatus.Core.csproj.CoreCompileInputs.cache
+D:\repos\DiscordFoobarStatus\DiscordFoobarStatus.Core\obj\Release\net5.0\DiscordFoobarStatus.Core.dll
+D:\repos\DiscordFoobarStatus\DiscordFoobarStatus.Core\obj\Release\net5.0\ref\DiscordFoobarStatus.Core.dll
+D:\repos\DiscordFoobarStatus\DiscordFoobarStatus.Core\obj\Release\net5.0\DiscordFoobarStatus.Core.pdb
