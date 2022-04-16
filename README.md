@@ -1,4 +1,4 @@
-# Discord Status (Rich Presence)
+# Discord Status (Rich Presence) for foobar2000
 
 Shows your currently playing track in foobar2000 in your Discord status. Works similarly to the Spotify integration.
 
