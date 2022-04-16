@@ -1,6 +1,6 @@
-# Discord Status (Rich Presence) for foobar2000
+# Discord Status for foobar2000 (Rich Presence)
 
-Shows your currently playing track in foobar2000 in your Discord status. Works similarly to the Spotify integration.
+Shows the currently playing track in foobar2000 in your Discord status. Works similarly to the Spotify integration.
 
 ## Features
 - Displays album art thumbnails, similar to the Spotify integration (images are fetched from Deezer).
