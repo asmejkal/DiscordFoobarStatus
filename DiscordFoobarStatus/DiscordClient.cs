@@ -7,9 +7,11 @@ using System.Runtime.InteropServices;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
+using DiscordFoobarStatus.Core.Interop;
 using DiscordFoobarStatus.Core.Models;
 using DiscordFoobarStatus.Core.Utility;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 
 namespace DiscordFoobarStatus
 {
@@ -55,7 +57,7 @@ namespace DiscordFoobarStatus
                     _logger.LogInformation("Shutting down process {ProcessId}", _statusProcess.Id);
                     if (WindowFinder.TryFindProcessWindow(_statusProcess.Id, ClientWindowTitle, out var handle))
                     {
-                        if (Interop.SendMessageTimeout(handle, _messageIds.Shutdown, IntPtr.Zero, IntPtr.Zero, 0, 1000, out _) == 0)
+                        if (User32.SendMessageTimeout(handle, _messageIds.Shutdown, IntPtr.Zero, IntPtr.Zero, 0, 1000, out _) == 0)
                             _logger.LogError("Failed to shut down process {ProcessId} with error code {LastError}", _statusProcess.Id, Marshal.GetLastWin32Error());
                     }
                     else
@@ -115,8 +117,11 @@ namespace DiscordFoobarStatus
                 }
 
                 _logger.LogInformation("Sending activity update to process {ProcessId}", _statusProcess.Id);
-                var result = Interop.CopyData.Send(handle, (int)_messageIds.UpdateActivity, JsonSerializer.Serialize(activity), Unicode: true);
-                if (result != 0)
+                var message = CopyData.CreateFromString((int)_messageIds.UpdateActivity, JsonConvert.SerializeObject(activity), unicode: true);
+                var result = CopyData.SendMessageTimeout(handle, User32.WM_COPYDATA, IntPtr.Zero, ref message, User32.SendMessageTimeoutFlags.SMTO_NORMAL, 2000, out _);
+                message.Dispose();
+
+                if (result != IntPtr.Zero)
                     _logger.LogError("Failed to update activity for process {ProcessId} with error code {LastError}", _statusProcess.Id, result);
             }
             finally

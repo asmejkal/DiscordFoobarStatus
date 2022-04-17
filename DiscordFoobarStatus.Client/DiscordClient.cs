@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Linq;
+using System.Security.Cryptography.X509Certificates;
+using System.Text;
 using Discord;
 using DiscordFoobarStatus.Core.Models;
 using Microsoft.Extensions.Logging;
@@ -25,10 +28,22 @@ namespace DiscordFoobarStatus.Client
 
         public void UpdateActivity(ActivitySetDto data)
         {
+            // Discord's string marshaling is wrong, so we have to encode the string manually and marshal it as a byte array
+            byte[] MarshalString(string x)
+            {
+                var result = new byte[128];
+
+                var position = 0; // Leave one byte at the end as a null terminator
+                for (var i = 0; i < x.Length && position + Encoding.UTF8.GetByteCount(x, i, 1) <= result.Length - 1; ++i)
+                    position += Encoding.UTF8.GetBytes(x, i, 1, result, position);
+                
+                return result;
+            }
+
             var activity = new Activity()
             {
-                State = data.State!,
-                Details = data.Details!
+                State = data.State != null ? MarshalString(data.State) : null,
+                Details = data.Details != null ? MarshalString(data.Details) : null!
             };
 
             if (data.Thumbnail != null)

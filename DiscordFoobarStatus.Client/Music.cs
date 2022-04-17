@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using DiscordFoobarStatus.Core.Interop;
 using DiscordFoobarStatus.Core.Models;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 
 namespace DiscordFoobarStatus.Client
 {
@@ -58,7 +59,7 @@ namespace DiscordFoobarStatus.Client
             if (copyData.dwData == (IntPtr)_messageIds.UpdateActivity)
             {
                 _logger.LogInformation("Received UpdateActivity message");
-                var dto = JsonSerializer.Deserialize<ActivitySetDto>(raw) ?? throw new JsonException("Null payload");
+                var dto = JsonConvert.DeserializeObject<ActivitySetDto>(raw) ?? throw new JsonSerializationException("Null payload");
                 _discordClient.UpdateActivity(dto);
             }
             else
