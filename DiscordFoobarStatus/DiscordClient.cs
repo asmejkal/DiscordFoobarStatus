@@ -121,8 +121,8 @@ namespace DiscordFoobarStatus
                 var result = CopyData.SendMessageTimeout(handle, User32.WM_COPYDATA, IntPtr.Zero, ref message, User32.SendMessageTimeoutFlags.SMTO_NORMAL, 2000, out _);
                 message.Dispose();
 
-                if (result != IntPtr.Zero)
-                    _logger.LogError("Failed to update activity for process {ProcessId} with error code {LastError}", _statusProcess.Id, result);
+                if (result == IntPtr.Zero)
+                    _logger.LogError("Failed to update activity for process {ProcessId} with error code {LastError}", _statusProcess.Id, Marshal.GetLastWin32Error());
             }
             finally
             {

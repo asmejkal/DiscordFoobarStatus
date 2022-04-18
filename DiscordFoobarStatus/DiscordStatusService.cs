@@ -83,11 +83,7 @@ namespace DiscordFoobarStatus
 
         private void HandleTrackPlaybackPositionChanged(object? sender, GenericEventArgs<double> e)
         {
-            // Calculate drift in displayed elapsed time (seek detection is currently broken in the library)
-            var expectedStart = DateTimeOffset.UtcNow - TimeSpan.FromSeconds(e.Value);
-            var currentDifference = _activityStart.HasValue ? Math.Abs((_activityStart.Value - expectedStart).TotalSeconds) : 0;
-
-            if (_updatePending || currentDifference > 5)
+            if (_updatePending)
             {
                 _updatePending = false;
 
