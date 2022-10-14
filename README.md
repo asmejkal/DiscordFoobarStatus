@@ -5,7 +5,7 @@ Shows the currently playing track in foobar2000 in your Discord status. Works si
 ## Features
 - Displays album art thumbnails, similar to the Spotify integration (images are fetched from Deezer)
 - The "now playing" status disappears completely when you pause or stop the playback
-- Customizable display strings
+- Fully customizable format of displayed text
 
 ## Installation
 1. Install the [.NET 5 Desktop Runtime (x86)](https://dotnet.microsoft.com/en-us/download/dotnet/5.0)
