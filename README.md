@@ -12,3 +12,4 @@ Shows the currently playing track in foobar2000 in your Discord status. Works si
 2. Download and install the [asmejkal/foo_dotnet_component_host](https://github.com/asmejkal/foo_dotnet_component_host/releases/) component
 3. Download DiscordFoobarStatus from the [Releases](https://github.com/asmejkal/DiscordFoobarStatus/releases) section
 4. Install the component in foobar2000 Preferences -> Components -> .NET Component Host -> Install...
+5. Make sure your Activity Privacy settings in Discord allow status messages to be displayed
