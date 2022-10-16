@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace DiscordFoobarStatus.Core.Utility
+namespace DiscordFoobarStatus.Utility
 {
     public static class TaskHelper
     {
         private static readonly Action<Task> DefaultErrorContinuation =
         t =>
         {
-            try 
-            { 
-                t.Wait(); 
+            try
+            {
+                t.Wait();
             }
-            catch 
+            catch
             {
             }
         };

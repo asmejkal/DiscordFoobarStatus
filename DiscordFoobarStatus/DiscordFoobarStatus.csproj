@@ -2,17 +2,13 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0-windows</TargetFramework>	  
-    <UseWindowsForms>true</UseWindowsForms>	  <TargetFramework>net5.0-windows</TargetFramework>
-	  
+    <UseWindowsForms>true</UseWindowsForms>	  	  
     <Nullable>enable</Nullable>
     <AssemblyName>dotnet_discord_foobar_status</AssemblyName>
     <ProduceReferenceAssembly>False</ProduceReferenceAssembly>
     <Platforms>x86</Platforms>
 	<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
-    <Optimize>False</Optimize>
+	<Version>1.0.3-beta</Version>
   </PropertyGroup>
 
   <ItemGroup>
@@ -23,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DiscordFoobarStatus.Core\DiscordFoobarStatus.Core.csproj" />
+    <ProjectReference Include="..\DiscordFoobarStatus.DiscordSdk\DiscordFoobarStatus.DiscordSdk.csproj" />
   </ItemGroup>
 
 </Project>

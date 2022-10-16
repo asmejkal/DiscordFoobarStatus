@@ -5,10 +5,6 @@ VisualStudioVersion = 17.0.31912.275
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiscordFoobarStatus", "DiscordFoobarStatus\DiscordFoobarStatus.csproj", "{4054AD3B-2566-4C7E-A2FE-6D11DD126BB0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiscordFoobarStatus.Client", "DiscordFoobarStatus.Client\DiscordFoobarStatus.Client.csproj", "{E31DEC3B-14B0-404D-812E-1C50EBD6DAFF}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiscordFoobarStatus.Core", "DiscordFoobarStatus.Core\DiscordFoobarStatus.Core.csproj", "{DC6532FA-1F9D-4ABF-B520-251609D76749}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiscordFoobarStatus.DiscordSdk", "DiscordFoobarStatus.DiscordSdk\DiscordFoobarStatus.DiscordSdk.csproj", "{12EA04CD-5F84-476D-8E52-59C13B5B1D93}"
 EndProject
 Global
@@ -21,14 +17,6 @@ Global
 		{4054AD3B-2566-4C7E-A2FE-6D11DD126BB0}.Debug|x86.Build.0 = Debug|x86
 		{4054AD3B-2566-4C7E-A2FE-6D11DD126BB0}.Release|x86.ActiveCfg = Release|x86
 		{4054AD3B-2566-4C7E-A2FE-6D11DD126BB0}.Release|x86.Build.0 = Release|x86
-		{E31DEC3B-14B0-404D-812E-1C50EBD6DAFF}.Debug|x86.ActiveCfg = Debug|x86
-		{E31DEC3B-14B0-404D-812E-1C50EBD6DAFF}.Debug|x86.Build.0 = Debug|x86
-		{E31DEC3B-14B0-404D-812E-1C50EBD6DAFF}.Release|x86.ActiveCfg = Release|x86
-		{E31DEC3B-14B0-404D-812E-1C50EBD6DAFF}.Release|x86.Build.0 = Release|x86
-		{DC6532FA-1F9D-4ABF-B520-251609D76749}.Debug|x86.ActiveCfg = Debug|x86
-		{DC6532FA-1F9D-4ABF-B520-251609D76749}.Debug|x86.Build.0 = Debug|x86
-		{DC6532FA-1F9D-4ABF-B520-251609D76749}.Release|x86.ActiveCfg = Release|x86
-		{DC6532FA-1F9D-4ABF-B520-251609D76749}.Release|x86.Build.0 = Release|x86
 		{12EA04CD-5F84-476D-8E52-59C13B5B1D93}.Debug|x86.ActiveCfg = Debug|x86
 		{12EA04CD-5F84-476D-8E52-59C13B5B1D93}.Debug|x86.Build.0 = Debug|x86
 		{12EA04CD-5F84-476D-8E52-59C13B5B1D93}.Release|x86.ActiveCfg = Release|x86

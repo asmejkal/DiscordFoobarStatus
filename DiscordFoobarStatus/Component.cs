@@ -68,8 +68,13 @@ namespace DiscordFoobarStatus
                     services.AddSingleton(servicesManager.RegisterForPlaybackCallbacks());
 
                     services.AddSingleton<IConfigurationWriter>(configurationSource);
-                    services.AddSingleton<IDiscordClient, DiscordClient>();
+                    
+                    services.AddSingleton<DiscordClientService>();
+                    services.AddSingleton<IDiscordClientService>(x => x.GetRequiredService<DiscordClientService>());
+                    services.AddHostedService(x => x.GetRequiredService<DiscordClientService>());
+
                     services.AddHostedService<DiscordStatusService>();
+
                     services.AddHttpClient<IDeezerClient, DeezerClient>(x => x.BaseAddress = new Uri("https://api.deezer.com/"));
                 })
                 .ConfigureLogging(x => x.AddFoobarConsole().SetMinimumLevel(LogLevel.Information).AddFilter("System.Net.Http", LogLevel.None))

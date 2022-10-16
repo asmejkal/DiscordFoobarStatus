@@ -5,6 +5,6 @@ namespace DiscordFoobarStatus
 {
     public interface IDeezerClient
     {
-        Task<Uri?> FindThumbnailAsync(string artist, string album);
+        Task<Uri?> FindThumbnailAsync(string artist, string? album);
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
-using DiscordFoobarStatus.Core.Interop;
+using DiscordFoobarStatus.Utility;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Qwr.ComponentInterface;

@@ -2,7 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace DiscordFoobarStatus.Core.Utility
+namespace DiscordFoobarStatus.Utility
 {
     public static class SemaphoreSlimExtensions
     {
@@ -16,6 +16,12 @@ namespace DiscordFoobarStatus.Core.Utility
             }
 
             public void Dispose() => Semaphore.Release();
+        }
+
+        public static IDisposable Claim(this SemaphoreSlim s)
+        {
+            s.Wait();
+            return new LockScope(s);
         }
 
         public static async Task<IDisposable> ClaimAsync(this SemaphoreSlim s)

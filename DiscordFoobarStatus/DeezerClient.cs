@@ -15,9 +15,16 @@ namespace DiscordFoobarStatus
             _client = client;
         }
 
-        public async Task<Uri?> FindThumbnailAsync(string artist, string album)
+        public async Task<Uri?> FindThumbnailAsync(string artist, string? album = null)
         {
-            var result = await _client.GetStringAsync($"search?strict=on&q=artist:\"{artist}\" album:\"{album}\"");
+            if (string.IsNullOrWhiteSpace(artist))
+                return null;
+
+            var query = $"search?strict=on&q=artist:\"{artist}\"";
+            if (!string.IsNullOrWhiteSpace(album))
+                query += $" album:\"{album}\"";
+
+            var result = await _client.GetStringAsync(query);
             
             var json = JObject.Parse(result);
             var item = json["data"]?.AsJEnumerable().FirstOrDefault();

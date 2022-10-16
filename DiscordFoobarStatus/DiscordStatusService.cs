@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Metadata.Ecma335;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using DiscordFoobarStatus.Configuration;
-using DiscordFoobarStatus.Core.Models;
-using DiscordFoobarStatus.Core.Utility;
+using DiscordFoobarStatus.Utility;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -19,7 +14,7 @@ namespace DiscordFoobarStatus
     {
         private readonly IControls _controls;
         private readonly IDeezerClient _deezerClient;
-        private readonly IDiscordClient _discordClient;
+        private readonly IDiscordClientService _discordClient;
         private readonly ILogger<DiscordStatusService> _logger;
 
         private readonly IOptionsMonitor<FormattingOptions> _formattingOptions;
@@ -35,8 +30,8 @@ namespace DiscordFoobarStatus
             IPlaybackCallbacks callbacks,
             IControls controls,
             IDeezerClient deezerClient,
-            IDiscordClient discordClient,
-            ILogger<DiscordStatusService> logger, 
+            IDiscordClientService discordClient,
+            ILogger<DiscordStatusService> logger,
             IOptionsMonitor<FormattingOptions> formattingOptions,
             IOptionsMonitor<ComponentOptions> componentOptions)
         {
@@ -66,42 +61,50 @@ namespace DiscordFoobarStatus
 
         private void HandleComponentOptionsChanged(ComponentOptions value, string _)
         {
-            if (value.Disabled)
+            try
             {
-                Handle(async () =>
+                if (value.Disabled)
                 {
                     _logger.LogInformation("Component disabled, clearing activity");
-                    await _discordClient.ClearActivityAsync();
-                });
+                    _discordClient.ClearActivity();
+                }
+                else
+                {
+                    _logger.LogInformation("Component re-enabled");
+                    _updatePending = true;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                _logger.LogInformation("Component re-enabled");
-                _updatePending = true;
+                _logger.LogError(ex, "Failed to handle options change");
             }
         }
 
         private void HandleTrackPlaybackPositionChanged(object? sender, GenericEventArgs<double> e)
         {
-            if (_updatePending)
+            try
             {
-                _updatePending = false;
-
-                if (_componentOptions.CurrentValue.Disabled)
-                    return;
-
-                var handle = _currentHandle;
-                if (handle == null)
+                if (_updatePending)
                 {
-                    _logger.LogError("Missing current track handle");
-                    return;
-                }
+                    _updatePending = false;
 
-                Handle(async () =>
-                {
+                    if (_componentOptions.CurrentValue.Disabled)
+                        return;
+
+                    var handle = _currentHandle;
+                    if (handle == null)
+                    {
+                        _logger.LogError("Missing current track handle");
+                        return;
+                    }
+
                     _logger.LogInformation("Updating activity");
-                    await UpdateActivityAsync(handle, e.Value);
-                });
+                    UpdateActivity(handle, e.Value);
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Failed to handle playback position change");
             }
         }
 
@@ -113,30 +116,38 @@ namespace DiscordFoobarStatus
 
         private void HandlePlaybackStopped(object? sender, GenericEventArgs<PlaybackStopReason> e)
         {
-            if (e.Value != PlaybackStopReason.StartingAnother)
+            try
             {
-                Handle(async () =>
+                if (e.Value != PlaybackStopReason.StartingAnother)
                 {
                     _logger.LogInformation("Playback stopped, clearing activity");
-                    await _discordClient.ClearActivityAsync();
-                });
+                    _discordClient.ClearActivity();
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Failed to handle playback position change");
             }
         }
 
         private void HandlePlaybackPausedStateChanged(object? sender, GenericEventArgs<bool> e)
         {
-            if (e.Value)
+            try
             {
-                Handle(async () =>
+                if (e.Value)
                 {
                     _logger.LogInformation("Playback paused, clearing activity");
-                    await _discordClient.ClearActivityAsync();
-                });
+                    _discordClient.ClearActivity();
+                }
+                else
+                {
+                    _logger.LogInformation("Playback resumed");
+                    _updatePending = true; // Can take a while for the unpause to propagate
+                }
             }
-            else
+            catch (Exception ex)
             {
-                _logger.LogInformation("Playback resumed");
-                _updatePending = true; // Can take a while for the unpause to propagate
+                _logger.LogError(ex, "Failed to handle playback position change");
             }
         }
 
@@ -156,45 +167,53 @@ namespace DiscordFoobarStatus
             _updatePending = true;
         }
 
-        public async Task StartAsync(CancellationToken cancellationToken)
+        public Task StartAsync(CancellationToken cancellationToken)
         {
             _logger.LogInformation("Clearing activity from previous run, in case Foobar crashed");
             try
             {
-                await _discordClient.ClearActivityAsync();
+                _discordClient.ClearActivity();
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Failed to clear activity");
             }
+
+            return Task.CompletedTask;
         }
 
-        public async Task StopAsync(CancellationToken cancellationToken)
+        public Task StopAsync(CancellationToken cancellationToken)
         {
             _logger.LogInformation("Shutting down, clearing activity");
             try
             {
-                await _discordClient.ClearActivityAsync();
+                _discordClient.ClearActivity();
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Failed to clear activity");
             }
+
+            return Task.CompletedTask;
         }
 
-        private async Task UpdateActivityAsync(IMetadbHandle handle, double positionSeconds)
+        private void UpdateActivity(IMetadbHandle handle, double positionSeconds)
         {
-            var topLine = _controls.TitleFormat(_formattingOptions.CurrentValue.TopLineFormat ?? PreferencesDefaults.TopLineFormat)
-                .EvalWithMetadb(handle);
+            var isPlaying = _controls.PlaybackControls().IsPlaying();
+            string Render(string expression)
+            {
+                var format = _controls.TitleFormat(expression);
+                return isPlaying ? format.Eval() : format.EvalWithMetadb(handle);
+            }
 
-            var bottomLine = _controls.TitleFormat(_formattingOptions.CurrentValue.BottomLineFormat ?? PreferencesDefaults.BottomLineFormat)
-                .EvalWithMetadb(handle);
+            var topLine = Render(_formattingOptions.CurrentValue.TopLineFormat ?? PreferencesDefaults.TopLineFormat);
+            var bottomLine = Render(_formattingOptions.CurrentValue.BottomLineFormat ?? PreferencesDefaults.BottomLineFormat);
 
-            var artist = _controls.TitleFormat("%artist%").EvalWithMetadb(handle);
-            var album = _controls.TitleFormat("%album%").EvalWithMetadb(handle);
+            var artist = Render("[%artist%]");
+            var album = Render("[%album%]");
 
             _activityStart = DateTimeOffset.UtcNow - TimeSpan.FromSeconds(positionSeconds);
-            var activity = new ActivitySetDto()
+            var activity = new Activity()
             {
                 Details = topLine,
                 State = bottomLine,
@@ -203,30 +222,22 @@ namespace DiscordFoobarStatus
                 StartTimestamp = _activityStart.Value.ToUnixTimeSeconds()
             };
 
-            try
-            {
-                var url = await _deezerClient.FindThumbnailAsync(artist, album);
-                if (url != null)
-                    activity.Thumbnail = url.AbsoluteUri;
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, $"Failed to retrieve album information for album {album} and artist {artist} from Deezer");
-            }
-
-            await _discordClient.UpdateActivityAsync(activity);
-        }
-
-        private void Handle(Func<Task> func)
-        {
-            // We can't block the UI thread with long running IPC or HTTP requests, so we need to offload to a worker thread
+            // Offload to a worker thread, to not block the main thread with potentially long-running HTTP requests
             TaskHelper.FireForget(async () =>
             {
-                using (await _semaphore.ClaimAsync())
+                try
                 {
-                    await func();
+                    var url = await _deezerClient.FindThumbnailAsync(artist, album);
+                    if (url != null)
+                        activity.Thumbnail = url.AbsoluteUri;
                 }
-            }, ex => _logger.LogError(ex, "Uncaught exception in handler"));
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, $"Failed to retrieve album information for album {album} and artist {artist} from Deezer");
+                }
+
+                _discordClient.UpdateActivity(activity);
+            }, ex => _logger.LogError(ex, "Failed to update activity"));
         }
 
         public void Dispose()

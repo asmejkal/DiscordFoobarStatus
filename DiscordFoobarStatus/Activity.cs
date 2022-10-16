@@ -1,6 +1,6 @@
-﻿namespace DiscordFoobarStatus.Core.Models
+﻿namespace DiscordFoobarStatus
 {
-    public class ActivitySetDto
+    public class Activity
     {
         public string? State { get; set; }
         public string? Details { get; set; }
