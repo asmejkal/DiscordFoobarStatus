@@ -242,14 +242,14 @@ namespace Discord
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 128)]
         public string LargeImage;
 
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 128)]
-        public string LargeText;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 128)]
+        public byte[] LargeText;
 
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 128)]
         public string SmallImage;
 
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 128)]
-        public string SmallText;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 128)]
+        public byte[] SmallText;
     }
 
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
